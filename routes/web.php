@@ -1,17 +1,11 @@
 <?php
 
+use App\Livewire\Pages\Home;
+use App\Livewire\Pages\Notifications;
+use App\Livewire\Pages\Profile;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', Home::class)->name('home');
+Route::get('/notifications', Notifications::class)->name('notifications');
+Route::get('/profile/{user:username}', Profile::class)->name('profile.show');
 
-Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified',
-])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
-});
